@@ -1,6 +1,9 @@
 package umc.spring.domain;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.Gender;
 import umc.spring.domain.enums.MemberStatus;
@@ -16,6 +19,8 @@ import java.util.List;
 
 @Entity
 @Getter
+@DynamicUpdate
+@DynamicInsert
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -42,9 +47,7 @@ public class Member extends BaseEntity {
     private SocialType socialType;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
-    // 주의 ⚠️⚠️ mysql은 문자열을 무조건  ‘ ’로 감싸야 하기 때문에 'ACTIVE'로 해줘야 한다!!
-
+    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")// 주의 ⚠️⚠️ mysql은 문자열을 무조건  ‘ ’로 감싸야 하기 때문에 'ACTIVE'로 해줘야 한다!!
     private MemberStatus status;
 
     private LocalDate inactiveDate;
@@ -52,6 +55,7 @@ public class Member extends BaseEntity {
    // @Column(nullable = false, length = 50)
     private String email;
 
+    @ColumnDefault("0")
     private Integer point;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
