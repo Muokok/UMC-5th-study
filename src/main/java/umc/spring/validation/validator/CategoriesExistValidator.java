@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class CategoriesExistValidator implements ConstraintValidator<ExistCategories, List<Long>> {
+public class CategoriesExistValidator implements ConstraintValidator<ExistCategories, List<Long>> {//카테고리들이니까 List
 
     private final FoodCategoryRepository foodCategoryRepository;
     @Override
