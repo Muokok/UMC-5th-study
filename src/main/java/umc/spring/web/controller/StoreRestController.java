@@ -23,7 +23,7 @@ public class StoreRestController { // ReviewRestController가 아니라 어째�
 
     @PostMapping("/{storeId}/reviews")
     public ApiResponse<StoreResponseDTO.ReviewResultDto> createReview(@RequestBody @Valid StoreRequestDTO.ReviewDto request,
-                                                                      @ExistMember @RequestParam(name = "memberId") Long memberId,
+                                                                      @ExistMember @RequestHeader(name = "memberId") Long memberId,
                                                                       @ExistStore @PathVariable(name = "storeId") Long storeId){ // 예외처리 어노테이션 만들어줘야 함
         Review review = storeCommandService.createReview(memberId, storeId,request);
         return ApiResponse.onSuccess(StoreConverter.toReviewResultDTO(review));

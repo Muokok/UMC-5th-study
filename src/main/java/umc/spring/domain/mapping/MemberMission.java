@@ -1,7 +1,6 @@
 package umc.spring.domain.mapping;
 
 import lombok.*;
-import umc.spring.domain.FoodCategory;
 import umc.spring.domain.Member;
 import umc.spring.domain.Mission;
 import umc.spring.domain.common.BaseEntity;
@@ -21,6 +20,7 @@ public class MemberMission extends BaseEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(20) DEFAULT 'CHALLENGING'")
     private MissionStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -31,6 +31,18 @@ public class MemberMission extends BaseEntity {
     @JoinColumn(name = "missin_id")
     private Mission mission;
 
+    public void setMember(Member member){
+        if(this.member != null)
+            member.getMemberMissionList().remove(this);
+        this.member = member;
+        member.getMemberMissionList().add(this);
+    }
 
+    public void setMission(Mission mission){
+        if(this.mission != null)
+            mission.getMemberMissionList().remove(this);
+        this.mission = mission;
+        mission.getMemberMissionList().add(this);
+    }
 
 }
