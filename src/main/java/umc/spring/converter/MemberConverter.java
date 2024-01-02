@@ -51,7 +51,6 @@ public class MemberConverter {
 
     public static MemberMission toChallengeMission(MemberRequestDTO.ChallengeMissionDTO request){
         return MemberMission.builder()
-                .id(request.getMissionId())
                 .build();
     }
 }

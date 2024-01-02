@@ -3,6 +3,7 @@ package umc.spring.web.dto;
 import lombok.Getter;
 import umc.spring.domain.Mission;
 import umc.spring.validation.annotation.ExistCategories;
+import umc.spring.validation.annotation.ExistMission;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -34,7 +35,7 @@ public class MemberRequestDTO {
     @Getter
     public static class ChallengeMissionDTO{
         @NotNull
+        @ExistMission
         Long missionId;
-        //여기서 Long missionId로 갈지, Mission mission 으로 갈지 어떻게 해야할까??
     }
 }

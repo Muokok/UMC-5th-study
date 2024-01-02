@@ -57,6 +57,6 @@ public class MemberCommandServiceImpl implements MemberCommandService{
         memberMission.setMember(memberRepository.findById(memberId).get());
         memberMission.setMission(missionRepository.findById(request.getMissionId()).get());
 
-        return memberMissionRepository.save(memberMission);
+        return memberMissionRepository.save(memberMission);//JPA가 save로 데이터베이스에 저장하는 것
     }
 }

@@ -8,7 +8,7 @@ import umc.spring.repository.MemberRepository;
 
 import java.util.Optional;
 
-@Service
+@Service // 각각의 어노텡이션의 기능들은 아직 미숙함..
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class MemberQueryServiceImpl implements MemberQueryService{
