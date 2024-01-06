@@ -1,7 +1,7 @@
 package umc.spring.converter;
 
+import org.springframework.data.domain.Page;
 import umc.spring.domain.Review;
-import umc.spring.domain.Store;
 import umc.spring.web.dto.StoreRequestDTO;
 import umc.spring.web.dto.StoreResponseDTO;
 
@@ -34,7 +34,7 @@ public class StoreConverter {
                 .build();
     }
 
-    public static StoreResponseDTO.ReviewPreViewListDTO reviewPreViewListDTO(List<Review> reviewList){
+    public static StoreResponseDTO.ReviewPreViewListDTO reviewPreViewListDTO(Page<Review> reviewList){
 
         List<StoreResponseDTO.ReviewPreViewDTO> reviewPreViewDTOList = reviewList.stream()
                 .map(StoreConverter::reviewPreViewDTO).collect(Collectors.toList());

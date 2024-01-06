@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
@@ -27,6 +28,7 @@ import javax.validation.Valid;
 @RequestMapping("/stores")
 public class StoreRestController { // ReviewRestController가 아니라 어째서 StoreRestController인지? >> store에 대한 리뷰가 들어온 것이니..?
     private final StoreCommandService storeCommandService;
+    private final StoreQueryService storeQueryService;
 
     @PostMapping("/{storeId}/reviews")
     public ApiResponse<StoreResponseDTO.ReviewResultDto> createReview(@RequestBody @Valid StoreRequestDTO.ReviewDto request,
@@ -50,7 +52,7 @@ public class StoreRestController { // ReviewRestController가 아니라 어째�
     })
     public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistStore @PathVariable(name = "storeId") Long storeId,
                                                                             @RequestParam(name = "page") Integer page){
-        StoreQueryService.getReviewList(storeId,page);
-        return null;
+        Page<Review> reviewList = storeQueryService.getReviewList(storeId,page);
+        return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDTO(reviewList));
     }
 }

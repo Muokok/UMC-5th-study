@@ -24,7 +24,7 @@ public class StoreResponseDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class ReviewPreViewListDTO{
-        List<ReviewPreViewDTO> reviewLit;
+        List<ReviewPreViewDTO> reviewList;
         Integer listSize;
         Integer totalPage;
         Long totalElements;

@@ -32,6 +32,7 @@ public class StoreQueryServiceImpl implements StoreQueryService{
         Store store = storeRepository.findById(storeId).get();
 
         Page<Review> StorePage = reviewRepository.findAllByStore(store, PageRequest.of(page,10));
+        // 여기 size에 따라서 한 페이지에 얼마만큼의 review들을 보여줄지 정함.
 
         return StorePage;
     }
