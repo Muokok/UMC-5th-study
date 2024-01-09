@@ -15,6 +15,7 @@ import umc.spring.converter.StoreConverter;
 import umc.spring.domain.Review;
 import umc.spring.service.StoreService.StoreCommandService;
 import umc.spring.service.StoreService.StoreQueryService;
+import umc.spring.validation.annotation.CheckPage;
 import umc.spring.validation.annotation.ExistMember;
 import umc.spring.validation.annotation.ExistStore;
 import umc.spring.web.dto.StoreRequestDTO;
@@ -26,7 +27,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @Validated
 @RequestMapping("/stores")
-public class StoreRestController { // ReviewRestController가 아니라 어째서 StoreRestController인지? >> store에 대한 리뷰가 들어온 것이니..?
+public class StoreRestController { // ReviewRestController가 아니라 어째서 StoreRestController인지? >> store에 대한 리뷰가 들어온 거라서..?
     private final StoreCommandService storeCommandService;
     private final StoreQueryService storeQueryService;
 
@@ -48,11 +49,31 @@ public class StoreRestController { // ReviewRestController가 아니라 어째�
     })
     @Parameters({
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!"),
-            @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다.")
+            @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다.") // 이렇게 설정만 해줬는데 스웨거는 page가 쿼리 스트링으로 오는지 어떻게 아는거임?
     })
     public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistStore @PathVariable(name = "storeId") Long storeId,
-                                                                            @RequestParam(name = "page") Integer page){
+                                                                            @CheckPage @RequestParam(name = "page") Integer page){
         Page<Review> reviewList = storeQueryService.getReviewList(storeId,page);
         return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDTO(reviewList));
+    }
+
+    @GetMapping("/{storeId}/myreviews")
+    @Operation(summary = "내가 작성한 리뷰 목록 조회 API", description = "내가 작성한 리뷰들의 목록을 조회하는 API이며, 페이징을 포함합니다. query String 으로 page 번호를 주세요")
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200",description = "OK, 성공"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH003", description = "access 토큰을 주세요!",content = @Content(schema = @Schema(implementation = ApiResponse.class))),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH004", description = "acess 토큰 만료",content = @Content(schema = @Schema(implementation = ApiResponse.class))),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "acess 토큰 모양이 이상함",content = @Content(schema = @Schema(implementation = ApiResponse.class))),
+    })
+    @Parameters({
+            @Parameter(name = "page", description = "페이지 번호"),
+            @Parameter(name = "memberId", description = "유저 Id")
+    })
+
+    public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getMyReviewList(@ExistMember @RequestHeader(name = "memberId") Long memberId,
+                                                                            @CheckPage @RequestParam(name = "page") Integer page){
+        page -= 1;
+        Page<Review> myReviewList = storeQueryService.getMyReviewList(memberId,page);
+        return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDTO(myReviewList));
     }
 }

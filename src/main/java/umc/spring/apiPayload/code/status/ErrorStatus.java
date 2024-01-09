@@ -30,6 +30,9 @@ public enum ErrorStatus implements BaseErrorCode {
     // Food Category 관련 에러
     FOOD_CATEGORY_NOT_FOUND(HttpStatus.BAD_REQUEST, "FOODCATEGORY4001","음식 카테고리가 없습니다."),
 
+    // page 관련 에러
+    PAGE_ONLY_POSITIVE_NUM(HttpStatus.BAD_REQUEST, "PAGE4001", "페이지 번호는 1 이상으로 해주세요."),
+
     // 예시,,,
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
 

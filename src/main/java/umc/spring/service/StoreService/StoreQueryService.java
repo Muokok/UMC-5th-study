@@ -11,4 +11,5 @@ public interface StoreQueryService {
 
     Page<Review> getReviewList(Long storeId, Integer page);
     // 위 Page는 Spring Data JPA에서 제공하는 Paging을 위한 추상화를 제공함.
+    Page<Review> getMyReviewList(Long memberId, Integer page);
 }
