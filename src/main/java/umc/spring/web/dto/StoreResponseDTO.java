@@ -25,7 +25,8 @@ public class StoreResponseDTO {
     @AllArgsConstructor
     public static class ReviewPreViewListDTO{
         List<ReviewPreViewDTO> reviewList;
-        Integer listSize;
+        Integer listSize; //  listSize, totalPage, totalElements는 어떻게 구하는 건지?
+                            // PageRequest에서 알아서 하는건가? >> 컨버터에서 설정해줌
         Integer totalPage;
         Long totalElements;
         Boolean isFirst;
@@ -42,5 +43,4 @@ public class StoreResponseDTO {
         String body;
         LocalDate createdAt;
     }
-
 }

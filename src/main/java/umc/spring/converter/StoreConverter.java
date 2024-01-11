@@ -44,7 +44,7 @@ public class StoreConverter {
                 .isFirst(reviewList.isFirst())
                 .totalPage(reviewList.getTotalPages())
                 .totalElements(reviewList.getTotalElements())
-                .listSize(reviewPreViewDTOList.size())
+                .listSize(reviewPreViewDTOList.size()) // 리뷰의 개수
                 .reviewList(reviewPreViewDTOList)
                 .build();
     }
