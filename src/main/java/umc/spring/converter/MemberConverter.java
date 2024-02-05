@@ -51,6 +51,6 @@ public class MemberConverter {
 
     public static MemberMission toChallengeMission(MemberRequestDTO.ChallengeMissionDTO request){
         return MemberMission.builder()
-                .build();
+                .build(); // 이거 왜 있는거임? 왜 만든거지 대체?
     }
 }

@@ -25,7 +25,7 @@ public class ApiResponse<T> {
 
     public static <T> ApiResponse<T> onSuccess(T result){
         return new ApiResponse<>(true, SuccessStatus._OK.getCode() , SuccessStatus._OK.getMessage(), result);
-        // _OK.getCode() 이 부분에서 getCode() 메소드는 어디서 가져온 것인지??
+        // _OK.getCode() 이 부분에서 getCode() 메소드는 어디서 가져온 것인지?? SuccessStatus의 Getter를 이용해 가져옴
    }
 
     public static <T> ApiResponse<T> of(BaseCode code, T result){

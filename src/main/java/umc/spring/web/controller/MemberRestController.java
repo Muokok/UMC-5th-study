@@ -31,7 +31,8 @@ public class MemberRestController {
 
     @PostMapping("/missions")
     public ApiResponse<MemberResponseDTO.ChallengeMissionResultDTO> challengeMission(@ExistMission @RequestBody @Valid MemberRequestDTO.ChallengeMissionDTO request,
-                                                                                     @ExistMember @RequestHeader(name = "memberId") Long memberId){
+                                                                                     @ExistMemq
+                                                                                     ber @RequestHeader(name = "memberId") Long memberId){
         MemberMission memberMission = memberCommandService.challengeMission(memberId, request); // request는 missionId 밖에 없음
         return ApiResponse.onSuccess(MemberConverter.toChallengeMissionResultDTO(memberMission));
     }
