@@ -1,4 +1,4 @@
-package umc.spring.converter;
+package umc.spring.config.converter;
 
 import umc.spring.domain.FoodCategory;
 import umc.spring.domain.mapping.MemberPrefer;

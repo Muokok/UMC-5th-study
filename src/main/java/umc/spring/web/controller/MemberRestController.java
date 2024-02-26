@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
-import umc.spring.converter.MemberConverter;
+import umc.spring.config.converter.MemberConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.mapping.MemberMission;
 import umc.spring.service.MemberService.MemberCommandService;

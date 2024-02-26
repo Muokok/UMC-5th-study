@@ -3,7 +3,7 @@ package umc.spring.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import umc.spring.converter.StoreConverter;
+import umc.spring.config.converter.StoreConverter;
 import umc.spring.domain.Review;
 import umc.spring.repository.MemberRepository;
 import umc.spring.repository.ReviewRepository;
