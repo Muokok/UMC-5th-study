@@ -1,4 +1,4 @@
-package umc.spring.converter;
+package umc.spring.config.converter;
 
 import umc.spring.web.dto.TempResponse;
 

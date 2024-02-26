@@ -1,4 +1,4 @@
-package umc.spring.converter;
+package umc.spring.config.converter;
 
 import org.springframework.data.domain.Page;
 import umc.spring.domain.Review;
