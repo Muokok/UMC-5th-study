@@ -20,6 +20,13 @@ public class ApiResponse<T> {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T result; // Generic
 
+    /*
+    // 모든 필드를 포함하는 생성자 (lombok @AllArgsConstructor 에 의해 자동 생성)
+    public ApiResponse(Boolean isSuccess, Integer code, String message, T result) {
+        this.code = code;
+        this.message = message;
+        this.result = result;
+    }*/
 
     // 성공한 경우 응답 생성
 
