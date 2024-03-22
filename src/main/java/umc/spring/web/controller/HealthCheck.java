@@ -12,4 +12,9 @@ public class HealthCheck {
         return "OK, GO GO GO GO GO GO gO";
     }
 
+    @GetMapping("/health2")
+    public String healthCheck2(){
+        return "OK, GO GO GO GO GO GO gO";
+    }
+
 }
