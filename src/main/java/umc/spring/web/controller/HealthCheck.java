@@ -16,5 +16,6 @@ public class HealthCheck {
     public String healthCheck2(){
         return "OK, GO GO GO GO GO GO gO";
     }
+    dasdamfka
 
 }
